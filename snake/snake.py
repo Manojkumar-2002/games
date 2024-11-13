@@ -80,9 +80,15 @@ class Snake:
                 self.score.refresh()
                 self.extend_turtle()
 
-            if head.xcor() > 280 or head.xcor() < -280 or head.ycor() > 280 or head.ycor() < -280:
-                game_stat = False
-                self.score.game_over()
+            if head.xcor() > 280:
+                head.setx(-280)
+            elif head.xcor() < -280:
+                head.setx(280)
+            elif head.ycor() > 280:
+                head.sety(-280)
+            elif head.ycor() < -280:
+                head.sety(280)
+
 
             for i in self.turtles:
                 if i != head:
