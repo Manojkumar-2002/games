@@ -2,31 +2,30 @@ from turtle import Screen
 from tur import Tur
 from cars import Car
 import time
-
-from turtlecrossing.score import Score
+from score import Score
 
 
 class Main:
     def __init__(self):
         self.s = Screen()
-        self.s.tracer(0)  # Turn off automatic screen updates for smoother animation
+        self.s.tracer(0)  
         self.s.bgcolor("black")
         self.s.setup(600, 700)
         self.score = Score(self.s)
-        self.tur = Tur(self.s)  # Initialize player-controlled turtle
-        self.car_manager = Car()  # Initialize cars
-        self.game_mode()  # Start game loop and listen for input
+        self.tur = Tur(self.s)  
+        self.car_manager = Car()  
+        self.game_mode()  
         self.s.exitonclick()
         self.game_timer = 500
 
     def game_mode(self):
         self.s.listen()
-        self.s.onkey(self.tur.move, "Up")  # Bind the "Up" key to the `move` method of `Tur`
+        self.s.onkey(self.tur.move, "Up")  
         self.game_loop()
 
     def game_loop(self):
 
-        result = self.car_manager.move(self.tur.turtle)  # Move all cars
+        result = self.car_manager.move(self.tur.turtle)  
         if result == "crash":
             self.score.game_over()
             return
